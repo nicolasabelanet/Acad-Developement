@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd ~/ACAD/$ACAD_DEFAULT_WORKSPACE/acad/distribution/common/scripts/Examples/AcadPy
+$SHELL
+
+

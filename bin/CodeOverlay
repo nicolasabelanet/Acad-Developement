@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ $# -eq 0 || $# -gt 1 ]]
+  then
+    echo "Correct usage is ./CodeOverlay acad.src.*.tgz"
+    exit 1
+fi
+
+cd ~/ACAD/$ACAD_DEFAULT_WORKSPACE/
+mv -v acad/src/acad/$QMAKESPEC ./
+mv $1 .
+tar -xvf acad.src.*.tgz
+rm -rf acad
+mv acad.src*/ acad/
+rm -f acad.src.*.tgz
+mv $QMAKESPEC acad/src/acad
+chmod +w -R *

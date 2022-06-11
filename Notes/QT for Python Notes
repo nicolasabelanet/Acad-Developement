@@ -1,0 +1,52 @@
+Bug number #3543
+
+Useful Code Snippets:
+    * Verifying QVariant can be converted to a QVariantMap/QVariantList:
+        if (!qVariant.canConvert<QVariantList>()) {
+          throwError ("Object must be a list of EntityReference.");
+          return false;
+        }
+
+        QVariantList listOfQVariant (qVariant.value<QVariantList>());
+
+
+Useful Commands:
+	* tar -cvzf FileName.tgz src/acad/Base/ test/ distribution/
+	* MakeAppsACAD -g, gdb 
+	* find . -type f -name "*.fileExtension" -exec grep -l "string" {} \;
+	
+
+Class Conversion Notes:
+	* When converting a class if a copy xor assignment method exists implement the other.	
+	* When converting a class that has a Q_ENUMS make sure to add the tag <enum-type name="Name"/> in AcadPy.xml. Look at ErrorCodeManager for reference.
+	* Check to see if the enum in PythonEngine.h and acadpy_python.h have the same values.
+	* Ensure that getters and setters do not have the same name as the property as defined in AcadPy.xml.
+    * When converting a class if a pointer is defaulted to NULL change to nullptr.
+	
+Test Script Conversion Notes:	
+	* When converting a TestClass use pretty printer when printing data types.
+	* When converting a test script if you encounter the error function(dataType) should be called with dataType {hex}, and is called with dataType delete
+		linux-g++-64/Base/AcadPy
+	* Run a script in batch mode using hte command: Path to acad -acadpy script
+		
+
+Conversion Process:	
+	1. Convert files from scripts to pyscripts using PerlModify
+	2. Build using makelibsacad then makeappsacad to make sure no errors exist.
+	3. Add new classes to appropraite build paths.
+	4. Rebuild using makelibs and make apps to generate bindings.
+	5. Test in acad
+	6. Convert test script to test py script using PerlModify
+
+TODO:
+	* Fix test scripts after dependencies are complete
+		* TestInterval3D.py
+		* TestTransformMatrix.py
+		
+	* Fix classes after dependencies
+		* linefont.cpp
+
+IDEAS:
+
+    * Modify ACAD error codes from as to py
+    * Create a python helper class with function like prettyPrintDict and dumpProperties.

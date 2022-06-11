@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $# -eq 0 || $# -gt 1 ]]
+  then
+    echo "Correct usage is ./BallChanges fileName"
+    exit 1
+fi
+
+cd ~/ACAD/$ACAD_DEFAULT_WORKSPACE/acad
+tar -cvzf $1.tgz src/acad/Base/ test/ distribution/ src/acad/Python
+mv $1.tgz ~/Desktop
