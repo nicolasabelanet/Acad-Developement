@@ -1,4 +1,20 @@
 #!/bin/bash
 
-cd ~/ACAD/$ACAD_DEFAULT_WORKSPACE/acad/test/AcadPy
-$SHELL
+if [ $# -gt 1 ]
+  then
+    echo "Correct usage is ./GoToTestAcadPy [-f]"
+    exit 1
+fi
+
+if [ $# -gt 0 ]
+  then
+    if [ $1 == "-f" ]
+      then
+        nautilus ~/ACAD/$ACAD_DEFAULT_WORKSPACE/acad/test/AcadPy 
+    fi
+
+else
+  cd ~/ACAD/$ACAD_DEFAULT_WORKSPACE/acad/test/AcadPy
+  $SHELL
+fi
+

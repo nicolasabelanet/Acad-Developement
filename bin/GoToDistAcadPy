@@ -1,6 +1,22 @@
 #!/bin/bash
 
-cd ~/ACAD/$ACAD_DEFAULT_WORKSPACE/acad/distribution/common/scripts/Examples/AcadPy
-$SHELL
+if [ $# -gt 1 ]
+  then
+    echo "Correct usage is ./GoToDistAcadPy [-f]"
+    exit 1
+fi
+
+
+if [ $# -gt 0 ]
+  then
+    if [ $1 == "-f" ]
+      then
+        nautilus ~/ACAD/$ACAD_DEFAULT_WORKSPACE/acad/distribution/common/scripts/Examples/AcadPy
+    fi
+
+else
+  cd ~/ACAD/$ACAD_DEFAULT_WORKSPACE/acad/distribution/common/scripts/Examples/AcadPy
+  $SHELL
+fi
 
 
